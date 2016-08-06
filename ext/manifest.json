@@ -10,10 +10,6 @@
     "128": "icons/icon128.png"
   },
   "default_locale": "en",
-  "background": {
-    "page": "src/bg/background.js",
-    "persistent": false
-  },
   "chrome_url_overrides": {
     "newtab": "src/override/override.html"
   },
