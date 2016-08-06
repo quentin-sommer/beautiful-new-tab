@@ -5,6 +5,8 @@ $(function () {
     callbackUrl: "https://oijdgkicifciofgbfcapbpndlmdjccjh.chromiumapp.org/auth-success"
   });
 
+  const imgPath = 'custom';
+
   unsplash.photos.getRandomPhoto({
     query: 'ocean',
     width: 1920,
@@ -15,11 +17,11 @@ $(function () {
         const img = new Image();
         img.onload = function () {
           const container = $('#photoContainer');
-          container.css('background', 'url(' + res.urls.custom + ') no-repeat center center fixed');
+          container.css('background', 'url(' + res.urls[imgPath] + ') no-repeat center center fixed');
           container.css('background-size', 'cover');
           container.fadeIn(500);
         };
 
-        img.src = res.urls.custom;
+        img.src = res.urls[imgPath];
       });
 });

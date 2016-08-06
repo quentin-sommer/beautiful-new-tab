@@ -6,6 +6,7 @@ html, body {
 
 #photoContainer {
     height: 100%;
+    display: none;
 }
 
 #photoContainer h1 {
