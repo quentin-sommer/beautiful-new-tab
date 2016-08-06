@@ -12,5 +12,8 @@
   "default_locale": "en",
   "chrome_url_overrides": {
     "newtab": "src/override/override.html"
-  }
+  },
+  "permissions": [
+    "https://api.unsplash.com/*"
+  ]
 }
