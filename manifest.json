@@ -14,6 +14,7 @@
     "newtab": "src/override/override.html"
   },
   "permissions": [
-    "https://api.unsplash.com/*"
+    "https://api.unsplash.com/*",
+    "storage"
   ]
 }
