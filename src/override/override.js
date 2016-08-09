@@ -11,48 +11,76 @@ function fadeIn(el, display) {
   })();
 }
 
+function setUpClearUser() {
+  const clearUser = document.getElementById('clearUser');
+  clearUser.innerHTML = '<p>Change name</p>';
+
+  clearUser.addEventListener('click', function () {
+    localStorage.removeItem('user');
+    location.reload();
+  });
+}
+
 function setImgUrl(url) {
   const photoContainer = document.getElementById('photoContainer');
+
   photoContainer.style.background = 'url(' + url + ') no-repeat center center fixed';
   photoContainer.style.backgroundSize = 'cover';
   fadeIn(photoContainer, 'block');
-  setText();
 }
 
 function setCreditUrl(user) {
-  console.log(user);
-  const userP = document.getElementById('photoCredit');
-  userP.innerHTML = '<a href="' + user.links.html + '">' + user.name + '</a> / <a href="https://unsplash.com">Unsplash</a>';
+  const photoCredit = document.getElementById('photoCredit');
+
+  photoCredit.innerHTML = '<a href="' + user.links.html + '">' + user.name + '</a> / <a href="https://unsplash.com">Unsplash</a>';
 }
 
 function setText() {
-  const hours = new Date().getHours();
-  const textElem = document.getElementById('helloText');
+  const user = localStorage.getItem('user');
+  const container = document.getElementById('container');
 
-  if (hours < 12) {
-    textElem.innerHTML = 'Good morning, Quentin.';
-  } else if (hours < 17) {
-    textElem.innerHTML = 'Good afternoon, Quentin.';
+  if (user === null) {
+    container.innerHTML = [
+      '<form id="usernameForm">',
+      '<label for="username">What\'s your name ?</label>',
+      '<input type="text" id="username">',
+      '</form>'
+    ].join("");
+    const usernameForm = document.getElementById('usernameForm');
+
+    usernameForm.addEventListener("submit", function (e) {
+      localStorage.setItem('user', usernameForm.children[1].value);
+      e.preventDefault();
+      setText();
+    });
   } else {
-    textElem.innerHTML = 'Good evening, Quentin.';
+    const hours = new Date().getHours();
+    let title;
+    if (hours < 12) {
+      title = `Good morning, ${user}.`;
+    } else if (hours < 17) {
+      title = `Good afternoon, ${user}.`;
+    } else {
+      title = `Good evening, ${user}.`;
+    }
+    container.innerHTML = '<h1 id="helloText">' + title + '</h1>';
+    setUpClearUser();
   }
+  fadeIn(container, 'block');
 }
 
 function main() {
   const unsplash = new Unsplash.default({
     applicationId: "d39a01d0afa7b51ca661ea6ebab52603bd76777e42427dd9f7c2cd5a6dc90398",
-    secret: "cf53c6b76854ea12934c56c145a85c3ede4f04c66eac028a0bcf526af331c111",
-    callbackUrl: "https://oijdgkicifciofgbfcapbpndlmdjccjh.chromiumapp.org/auth-success"
+    secret: "cf53c6b76854ea12934c56c145a85c3ede4f04c66eac028a0bcf526af331c111"
   });
+  const image = JSON.parse(localStorage.getItem('image'));
   const imgPath = 'custom';
-  let fromLocal = true;
-  const img = JSON.parse(localStorage.getItem('image'));
+  const imgElem = new Image();
 
-  if (img !== null) {
-    setImgUrl(img.url);
-    setCreditUrl(img.photographer);
-  } else {
-    fromLocal = false;
+  if (image !== null) {
+    setImgUrl(image.url);
+    setCreditUrl(image.photographer);
   }
 
   unsplash.photos.getRandomPhoto({
@@ -62,16 +90,16 @@ function main() {
   })
       .then(Unsplash.toJson)
       .then(res => {
-        const img = new Image();
-        localStorage.setItem('image', JSON.stringify({ url: res.urls[imgPath], photographer: res.user }));
-        if (fromLocal === false) {
-          img.onload = function () {
+        if (image === null) {
+          imgElem.onload = function () {
             setImgUrl(res.urls[imgPath]);
             setCreditUrl(res.user);
           };
         }
-        img.src = res.urls[imgPath];
+        localStorage.setItem('image', JSON.stringify({ url: res.urls[imgPath], photographer: res.user }));
+        imgElem.src = res.urls[imgPath];
       });
+  setText();
 }
 
 document.addEventListener("DOMContentLoaded", main);

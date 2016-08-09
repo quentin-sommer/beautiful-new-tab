@@ -1,5 +1,5 @@
 html, body {
-    font-size: 62.5%;
+    font-size: 100%;
     font-family: 'Raleway', sans-serif;
     font-weight: 500;
     min-height: 100%;
@@ -24,9 +24,10 @@ a:visited {
     background-size: cover;
 }
 
-#photoContainer div {
+#container {
+    display: none;
     position: absolute;
-    color: white;
+    color: #ffffff;
     margin: auto;
     width: 100%;
     text-align: center;
@@ -34,16 +35,72 @@ a:visited {
 }
 
 #photoCredit {
-    font-size: 1.5rem;
+    font-size: 1rem;
     position: absolute;
     bottom: 0;
     left: 0;
     margin: 10px;
     padding: 4px;
-    background-color: #f5f5f5;
+    background-color: rgba(228, 228, 228, 0.8);
+    transition: all ease-out .2s;
+}
+
+#photoCredit:hover {
+    transition: all .5s;
+    background-color: rgba(228, 228, 228, 1);
+}
+
+#clearUser p {
+    font-size: 1rem;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 10px;
+    padding: 4px;
+    background-color: rgba(228, 228, 228, 0.8);
+    cursor: pointer;
+    transition: all ease-out .2s;
+}
+
+#clearUser p:hover {
+    transition: all .5s;
+    background-color: rgba(228, 228, 228, 1);
 }
 
 #helloText {
-    font-size: 9rem;
+    font-size: 5rem;
     font-weight: 500;
+    margin: auto;
+    /*
+    make elem width == content width
+    display: inline-block;
+    */
+    background-color: rgba(50, 50, 50, 0.6);
+    padding: .4rem 1.5rem .4rem 1.5rem;
+}
+
+#usernameForm {
+    font-size: 2rem;
+    background-color: rgba(50, 50, 50, 0.6);
+    padding: .4rem 1.5rem .4rem 1.5rem;
+}
+
+#usernameForm input {
+    font-size: 2rem;
+}
+
+input[type="text"] {
+    color: #ffffff;
+    background-color: transparent;
+    padding: 5px;
+    border: none;
+    border-bottom: solid 2px #dedede;
+    transition: border 0.3s;
+    box-shadow: none;
+    width: 150px;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-bottom: solid 2px #ffffff;
 }
