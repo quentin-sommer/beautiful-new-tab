@@ -1,8 +1,8 @@
 {
-  "name": "Beautiul new Tab",
+  "name": "Beautiful new Tab",
   "version": "0.0.1",
   "manifest_version": 2,
-  "description": "Enjoy a new unsplash image at each new tab",
+  "description": "Enjoy a new Unsplash image and a personalized message when you open a new tab",
   "homepage_url": "https://github.com/quentin-sommer/beautiful-new-tab",
   "icons": {
     "16": "icons/icon16.png",
