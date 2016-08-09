@@ -94,13 +94,14 @@ input[type="text"] {
     background-color: transparent;
     padding: 5px;
     border: none;
-    border-bottom: solid 2px #dedede;
+    border-bottom: solid 2px #d5d5d5;
     transition: border 0.3s;
     box-shadow: none;
     width: 150px;
 }
 
 input[type="text"]:focus {
+    transition: all .3s;
     outline: none;
     border-bottom: solid 2px #ffffff;
 }
