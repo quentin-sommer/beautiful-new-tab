@@ -17,7 +17,7 @@ function setUpClearUser() {
 
   clearUser.addEventListener('click', function () {
     localStorage.removeItem('user');
-    location.reload();
+    setText();
   });
 }
 
