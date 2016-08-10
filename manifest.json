@@ -5,9 +5,9 @@
   "description": "Enjoy a new Unsplash image and a personalized message when you open a new tab",
   "homepage_url": "https://github.com/quentin-sommer/beautiful-new-tab",
   "icons": {
-    "16": "icons/icon16.png",
-    "48": "icons/icon48.png",
-    "128": "icons/icon128.png"
+    "16": "icons/bntab16.png",
+    "48": "icons/bntab48.png",
+    "128": "icons/bntab128.png"
   },
   "chrome_url_overrides": {
     "newtab": "src/override/override.html"
