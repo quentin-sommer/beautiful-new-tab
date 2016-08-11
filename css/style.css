@@ -26,6 +26,13 @@ a:visited {
     position: absolute;
     top: 0;
     left: 0;
+    transition: background-color ease-in .2s;
+    border-radius: 5%;
+}
+
+#logo:hover {
+    transition: background-color ease-out .3s;
+    background-color: rgba(228, 228, 228, 1);
 }
 
 #logo img {
@@ -56,7 +63,7 @@ a:visited {
     margin: 1rem;
     padding: .4rem;
     background-color: rgba(228, 228, 228, 0.8);
-    transition: all ease-out .2s;
+    transition: all ease-in .2s;
 }
 
 #photoCredit:hover {
@@ -72,7 +79,7 @@ a:visited {
     padding: .4rem;
     background-color: rgba(228, 228, 228, 0.8);
     cursor: pointer;
-    transition: all ease-out .2s;
+    transition: all ease-in .2s;
 }
 
 #clearUser p:hover {
