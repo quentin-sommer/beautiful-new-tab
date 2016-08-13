@@ -9,13 +9,26 @@
     </head>
     <body>
         <div id="photoContainer">
-          <!--  <div id="logo">
-                <a target="_blank" href="https://github.com/quentin-sommer/beautiful-new-tab"><img src="../../icons/bntab500.png" alt="logo"></a>
-            </div> -->
+            <!--  <div id="logo">
+                  <a target="_blank" href="https://github.com/quentin-sommer/beautiful-new-tab"><img src="../../icons/bntab500.png" alt="logo"></a>
+              </div> -->
             <div id="container">
             </div>
-            <p id="photoCredit"></p>
-            <div id="clearUser"></div>
+            <p id="photoCredit" class="btn"></p>
+            <button type="button" class="btn" id="settings-btn">Settings</button>
+            <div id="settings-container">
+                <div id="settings">
+                    <button class="btn" id="settings-close-btn">X</button>
+                    <div>
+                        <button id="changeName" class="btn setting-item">
+                            Change name
+                        </button>
+                        <button id="toggleText" class="btn setting-item">
+                            Toggle text
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
     </body>
 </html>
