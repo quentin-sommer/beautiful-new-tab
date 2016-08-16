@@ -40,7 +40,7 @@ function setText() {
   const user = JSON.parse(localStorage.getItem('user'));
   const container = document.getElementById('container');
 
-  if (user === null) {
+  if (user === null || user.name === false && user.showText) {
     container.innerHTML =
         ['<form id="usernameForm">',
           '<label for="username">What\'s your name ?</label>',
@@ -96,8 +96,10 @@ function setUpSettings() {
     if (newUser) {
       newUser.showText = !newUser.showText;
       localStorage.setItem('user', JSON.stringify(newUser));
-      setText();
+    } else {
+      localStorage.setItem('user', JSON.stringify({ name: false, showText: false }));
     }
+    setText();
   });
 }
 
