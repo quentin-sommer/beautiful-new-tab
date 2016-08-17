@@ -76,12 +76,10 @@ a:visited {
 
 #photoContainer {
     height: 100%;
-    display: none;
     background-size: cover;
 }
 
 #container {
-    display: none;
     position: absolute;
     color: #ffffff;
     margin: auto;
@@ -94,6 +92,19 @@ a:visited {
     position: absolute;
     bottom: 0;
     left: 0;
+}
+
+#hider {
+    height: 100%;
+    width: 100%;
+    background-color: #f5f5f5;
+    position: relative;
+    z-index: 10;
+}
+
+.fadeOut {
+    transition: opacity .75s ease;
+    opacity: 0 !important;
 }
 
 #helloText {

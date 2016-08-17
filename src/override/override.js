@@ -1,25 +1,9 @@
-function fadeIn(el, display) {
-  el.style.opacity = 0;
-  el.style.display = display || "block";
-
-  (function fade() {
-    var val = parseFloat(el.style.opacity);
-    if (!((val += .05) > 1)) {
-      el.style.opacity = val;
-      requestAnimationFrame(fade);
-    }
-  })();
-}
 function fadeOut(el) {
-  (function fade() {
-    var val = parseFloat(el.style.opacity);
-    if (!((val -= .1) < 0)) {
-      el.style.opacity = val;
-      requestAnimationFrame(fade);
-    } else {
-      el.style.display = 'none';
-    }
-  })();
+  el.addEventListener("transitionend", function listener() {
+    el.style.display = "none";
+    el.removeEventListener("transitionend", listener);
+  });
+  el.className = "fadeOut";
 }
 
 function setBackgroundImage(url) {
@@ -27,13 +11,12 @@ function setBackgroundImage(url) {
 
   photoContainer.style.background = 'url(' + url + ') no-repeat center center fixed';
   photoContainer.style.backgroundSize = 'cover';
-  fadeIn(photoContainer, 'block');
 }
 
 function setCreditUrl(user) {
   const photoCredit = document.getElementById('photoCredit');
 
-  photoCredit.innerHTML = '<a href="' + user.links.html + '">' + user.name + '</a> / <a href="https://unsplash.com">Unsplash</a>';
+  photoCredit.innerHTML = `<a href="${user.links.html}">${user.name}</a> / <a href="https://unsplash.com">Unsplash</a>`;
 }
 
 function setText() {
@@ -68,8 +51,6 @@ function setText() {
   else {
     container.innerHTML = '';
   }
-
-  fadeIn(container, 'block');
 }
 
 function setUpSettings() {
@@ -78,10 +59,10 @@ function setUpSettings() {
   const settingsCloseBtn = document.getElementById('settings-close-btn');
 
   settingsBtn.addEventListener('click', function () {
-    fadeIn(settingsContainer);
+    settingsContainer.style.display = "block";
   });
   settingsCloseBtn.addEventListener('click', function () {
-    fadeOut(settingsContainer);
+    settingsContainer.style.display = "none";
   });
 
   const changeName = document.getElementById('changeName');
@@ -139,6 +120,10 @@ function main() {
   getAndDisplayImage();
   setText();
   setUpSettings();
+
+  setTimeout(function () {
+    fadeOut(document.getElementById("hider"));
+  }, 0);
 }
 
 document.addEventListener("DOMContentLoaded", main);
