@@ -1,15 +1,18 @@
+/* fix for Unsplash undeclared */
+/*global Unsplash */
+
 function fadeOut(el) {
-  el.addEventListener("transitionend", function listener() {
-    el.style.display = "none";
-    el.removeEventListener("transitionend", listener);
+  el.addEventListener('transitionend', function listener() {
+    el.style.display = 'none';
+    el.removeEventListener('transitionend', listener);
   });
-  el.className = "fadeOut";
+  el.className = 'fadeOut';
 }
 
 function setBackgroundImage(url) {
   const photoContainer = document.getElementById('photoContainer');
 
-  photoContainer.style.background = 'url(' + url + ') no-repeat center center fixed';
+  photoContainer.style.background = `url(${url}) no-repeat center center fixed`;
   photoContainer.style.backgroundSize = 'cover';
 }
 
@@ -29,9 +32,9 @@ function setText() {
           '<label for="username">What\'s your name ?</label>',
           '<input type="text" id="username" required>',
           '</form>'
-        ].join("");
+        ].join('');
     const usernameForm = document.getElementById('usernameForm');
-    usernameForm.addEventListener("submit", function (e) {
+    usernameForm.addEventListener('submit', function (e) {
       localStorage.setItem('user', JSON.stringify({ name: usernameForm.children[1].value, showText: true }));
       e.preventDefault();
       setText();
@@ -46,9 +49,8 @@ function setText() {
     } else {
       title = `Good evening, ${user.name}.`;
     }
-    container.innerHTML = '<h1 id="helloText">' + title + '</h1>';
-  }
-  else {
+    container.innerHTML = `<h1 id="helloText">${title}</h1>`;
+  } else {
     container.innerHTML = '';
   }
 }
@@ -59,10 +61,10 @@ function setUpSettings() {
   const settingsCloseBtn = document.getElementById('settings-close-btn');
 
   settingsBtn.addEventListener('click', function () {
-    settingsContainer.style.display = "block";
+    settingsContainer.style.display = 'block';
   });
   settingsCloseBtn.addEventListener('click', function () {
-    settingsContainer.style.display = "none";
+    settingsContainer.style.display = 'none';
   });
 
   const changeName = document.getElementById('changeName');
@@ -86,8 +88,8 @@ function setUpSettings() {
 
 function getAndDisplayImage() {
   const unsplash = new Unsplash.default({
-    applicationId: "d39a01d0afa7b51ca661ea6ebab52603bd76777e42427dd9f7c2cd5a6dc90398",
-    secret: "cf53c6b76854ea12934c56c145a85c3ede4f04c66eac028a0bcf526af331c111"
+    applicationId: 'd39a01d0afa7b51ca661ea6ebab52603bd76777e42427dd9f7c2cd5a6dc90398',
+    secret: 'cf53c6b76854ea12934c56c145a85c3ede4f04c66eac028a0bcf526af331c111'
   });
   const image = JSON.parse(localStorage.getItem('image'));
   const imgPath = 'custom';
@@ -122,8 +124,8 @@ function main() {
   setUpSettings();
 
   setTimeout(function () {
-    fadeOut(document.getElementById("hider"));
+    fadeOut(document.getElementById('hider'));
   }, 0);
 }
 
-document.addEventListener("DOMContentLoaded", main);
+document.addEventListener('DOMContentLoaded', main);
